@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./visualiser.css";
 
 function visualiser () {
     return <div>

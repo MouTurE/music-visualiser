@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import "../App.css";
+import "./homepage.css";
 
 // Components of the page
 const AppTitle = () => {

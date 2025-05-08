@@ -1,11 +1,80 @@
 import { Link } from "react-router-dom";
 import "./visualiser.css";
+import PlayIconImage from "../Resources/play_icon.png";
+import PauseIconImage from "../Resources/pause_icon.png";
+import { useState } from "react";
 
-function visualiser () {
-    return <div>
-        <p>This page is for visualiser</p>
-        <Link to="/"> Go back to HomePage</Link>
+const CoverImage = () => {
+  const [color, setColor] = useState("#000000");
+  const [boxRadius, setBoxRadius] = useState(0);
+
+  return (
+    <div className="CoverImageFrame">
+      <img src="" alt="Cover Image" />
     </div>
-    }
-    
-    export default visualiser;
+  );
+};
+
+const SongTitle = () => {
+  const [visible, setVisible] = useState(true);
+  const [color, setColor] = useState("#000000");
+
+  const TitleStyle = {
+    color: "black",
+    display: visible ? "block" : "none",
+  };
+
+  return (
+    <p
+      contentEditable={true}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const element = e.currentTarget;
+          const text = element.innerText.trim();
+          if (text === "") {
+            setVisible(false); // Hide via class
+          } else {
+            e.currentTarget.blur();
+          }
+        }
+      }}
+      className="SongTitle"
+      style={TitleStyle}
+    >
+      {" "}
+      Song Title{" "}
+    </p>
+  );
+};
+
+const PlayButton = () => {
+  const [active, setActive] = useState(false);
+  const [color, setColor] = useState("#000000");
+
+  return (
+    <button
+      onClick={() => {
+        setActive(!active);
+      }}
+      className="PlayButton"
+    >
+      <img src={active === true ? PlayIconImage : PauseIconImage}></img>
+    </button>
+  );
+};
+
+// The Actual Page
+function visualiser() {
+  return (
+    <div>
+      <CoverImage />
+      <SongTitle />
+      <PlayButton />
+      <br />
+      <Link to="/"> Go back to HomePage</Link>
+    </div>
+  );
+}
+
+export default visualiser;

@@ -3,6 +3,7 @@ import "./visualiser.css";
 import PlayIconImage from "../Resources/play_icon.png";
 import PauseIconImage from "../Resources/pause_icon.png";
 import { useState } from "react";
+import ContextBox from "./Components/ContextBox";
 
 const CoverImage = () => {
   const [color, setColor] = useState("#000000");
@@ -68,11 +69,41 @@ const PlayButton = () => {
 function visualiser() {
   return (
     <div>
+      <Link to="/"> Go back to HomePage</Link>
+      <br />
+      <br />
       <CoverImage />
       <SongTitle />
       <PlayButton />
       <br />
-      <Link to="/"> Go back to HomePage</Link>
+
+      <ContextBox
+        titleText="Test"
+        visible={true}
+        options={[
+          {
+            labelText: "Value",
+            optionType: "Value",
+            onChange: (e) => {
+              console.log("Value changed to: " + e.target.value);
+            },
+          },
+          {
+            labelText: "Test Button",
+            optionType: "Button",
+            onTrigger: () => {
+              console.log("Button works");
+            },
+          },
+          {
+            labelText: "Test Button 2",
+            optionType: "Button",
+            onTrigger: () => {
+              console.log("Button works");
+            },
+          },
+        ]}
+      />
     </div>
   );
 }

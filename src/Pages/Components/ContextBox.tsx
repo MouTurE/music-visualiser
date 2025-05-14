@@ -35,7 +35,11 @@ function ContextBox({ titleText, visible, options }: ContextBoxProps) {
         <ul className="OptionList">
           <li className="Option-Button">
             {option.optionType === "Button" ? (
-              <button onClick={option.onTrigger}>{option.labelText}</button>
+              <button onClick={option.onTrigger}>
+                {" "}
+                {option.iconSrc != "" ? <img src={option.iconSrc}></img> : null}
+                <label>{option.labelText}</label>
+              </button>
             ) : (
               <div className="Option-Value">
                 <label> {option.labelText}: </label>

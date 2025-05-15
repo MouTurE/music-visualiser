@@ -14,16 +14,21 @@ export const TextElement = (props: {
   const [color, setColor] = useState("#D8D9DA");
   const [innerText, setInnerText] = useState("Song Title");
   const [visible, setVisible] = useState(true);
+  const [mousePos,setMousePos] = useState([0,0]);
+
 
   const contextVisible = props.elementId === props.activeElementId;
+
+
 
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
     props.onActivate(props.elementId);
+    setMousePos([e.clientX,e.clientY]);
   };
 
   return (
-    <div>
+    <div className="SongTitle">
       <p
         contentEditable={true}
         onContextMenu={handleRightClick}
@@ -39,7 +44,7 @@ export const TextElement = (props: {
             }
           }
         }}
-        className="SongTitle"
+        
         style={{ color, display: visible ? "block" : "none" }}
       >
         {" "}
@@ -48,6 +53,9 @@ export const TextElement = (props: {
       <ContextBox
         titleText="Text"
         visible={contextVisible}
+        x={mousePos[0]}
+        y={mousePos[1]}
+
         options={[
           {
             labelText: "Color",
@@ -71,6 +79,8 @@ export const ImageElement = (props: {
   const [color, setColor] = useState("#D8D9DA");
   const [borderThickness, setThickness] = useState(1);
   const [imageSrc, setImageSrc] = useState(props.src);
+  const [mousePos,setMousePos] = useState([0,0]);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const contextVisible = props.elementId === props.activeElementId;
@@ -78,6 +88,7 @@ export const ImageElement = (props: {
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
     props.onActivate(props.elementId);
+    setMousePos([e.clientX,e.clientY]);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -114,6 +125,8 @@ export const ImageElement = (props: {
       <ContextBox
         titleText="CoverImage"
         visible={contextVisible}
+        x={mousePos[0]}
+        y={mousePos[1]}
         options={[
           {
             labelText: "Border Color",
@@ -150,28 +163,32 @@ export const PlayButtonElement = (props: {
 }) => {
   const [active, setActive] = useState(false);
   const [color, setColor] = useState("#19D55E");
+  const [mousePos,setMousePos] = useState([0,0]);
 
   const contextVisible = props.elementId === props.activeElementId;
 
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
     props.onActivate(props.elementId);
+    setMousePos([e.clientX,e.clientY]);
   };
 
   return (
-    <div>
+    <div className="PlayButton">
       <button
         onContextMenu={handleRightClick}
         onClick={() => {
           setActive(!active);
         }}
-        className="PlayButton"
+        
         style={{ backgroundColor: color }}
       >
         <img src={active === true ? PlayIconImage : PauseIconImage}></img>
       </button>
       <ContextBox
         titleText="Play/Pause Button"
+        x={mousePos[0]}
+        y={mousePos[1]}
         visible={contextVisible}
         options={[
           {

@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import {easeIn, easeOut, motion} from "framer-motion";
 import "./visualiser.css";
 import PlayIconImage from "../Resources/play_icon.png";
 import PauseIconImage from "../Resources/pause_icon.png";
-import { useState } from "react";
+import LeftArrow from "../Resources/left_arrow.png"
 import ContextBox from "./Components/ContextBox";
+
 import {
   TextElement,
   ImageElement,
@@ -13,14 +16,26 @@ import {
 // The Actual Page
 function visualiser() {
   const [activeElementId, setActiveElementId] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleActivate = (id: string) => {
     setActiveElementId((prev) => (prev === id ? null : id));
   };
 
   return (
-    <div>
-      <Link to="/"> Back</Link>
+    <motion.div 
+    initial={{x:"200%"}}
+    animate={{x:0}}
+    exit={{x:window.innerWidth}}
+    transition={{duration:0.3}}
+    onContextMenu={(e) =>{
+      e.preventDefault();
+      
+    
+    }}>
+      <button className="BackButton" onClick={() => {navigate("/")}}>
+        <img src={LeftArrow} alt="" />
+      </button>
       <br />
       <br />
 
@@ -42,7 +57,7 @@ function visualiser() {
         activeElementId={activeElementId}
       ></PlayButtonElement>
       <br />
-    </div>
+    </motion.div>
   );
 }
 

@@ -13,9 +13,12 @@ interface ContextBoxProps {
   titleText: string;
   visible: boolean;
   options: OptionProps[];
+  x?: number | 0;
+  y?: number | 0;
+
 }
 
-function ContextBox({ titleText, visible, options }: ContextBoxProps) {
+function ContextBox({ titleText, visible, options, x, y }: ContextBoxProps) {
   const optionStyle = {
     listStyle: "none",
     padding: "5px",
@@ -26,7 +29,11 @@ function ContextBox({ titleText, visible, options }: ContextBoxProps) {
   if (!visible) return null;
 
   return (
-    <div className="ContextBox">
+    <div style={{
+      position:"absolute",
+      left: visible ? x + "px" : "0px",
+      top: visible ? y + "px" : "0px",
+    }} className="ContextBox">
       <b>
         <h3>{titleText}</h3>
       </b>

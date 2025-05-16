@@ -1,4 +1,4 @@
-import React, { Children, ReactNode } from "react";
+import React from "react";
 import "./ContextBox.css";
 
 export interface OptionProps {
@@ -15,25 +15,20 @@ interface ContextBoxProps {
   options: OptionProps[];
   x?: number | 0;
   y?: number | 0;
-
 }
 
 function ContextBox({ titleText, visible, options, x, y }: ContextBoxProps) {
-  const optionStyle = {
-    listStyle: "none",
-    padding: "5px",
-  };
-
-  const buttonStyle = { border: "none" };
-
   if (!visible) return null;
 
   return (
-    <div style={{
-      position:"absolute",
-      left: visible ? x + "px" : "0px",
-      top: visible ? y + "px" : "0px",
-    }} className="ContextBox">
+    <div
+      style={{
+        position: "absolute",
+        left: visible ? x + "px" : "0px",
+        top: visible ? y + "px" : "0px",
+      }}
+      className="ContextBox"
+    >
       <b>
         <h3>{titleText}</h3>
       </b>

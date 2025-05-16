@@ -10,6 +10,10 @@
     margin-top: 60px;
 }
 
+.CoverImageFrame img {
+    object-fit: cover;
+}
+
 .SongTitle {
     display: flex;
 

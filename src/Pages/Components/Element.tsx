@@ -3,7 +3,6 @@ import ContextBox from "./ContextBox";
 import React from "react";
 import PlayIconImage from "../../Resources/play_icon.png";
 import PauseIconImage from "../../Resources/pause_icon.png";
-import ImageIcon from "../../../Resources/image_icon.png";
 
 export const TextElement = (props: {
   elementId: string;
@@ -12,19 +11,15 @@ export const TextElement = (props: {
   onActivate: (id: string) => void;
 }) => {
   const [color, setColor] = useState("#D8D9DA");
-  const [innerText, setInnerText] = useState("Song Title");
   const [visible, setVisible] = useState(true);
-  const [mousePos,setMousePos] = useState([0,0]);
-
+  const [mousePos, setMousePos] = useState([0, 0]);
 
   const contextVisible = props.elementId === props.activeElementId;
-
-
 
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
     props.onActivate(props.elementId);
-    setMousePos([e.clientX,e.clientY]);
+    setMousePos([e.clientX, e.clientY]);
   };
 
   return (
@@ -44,7 +39,6 @@ export const TextElement = (props: {
             }
           }
         }}
-        
         style={{ color, display: visible ? "block" : "none" }}
       >
         {" "}
@@ -55,7 +49,6 @@ export const TextElement = (props: {
         visible={contextVisible}
         x={mousePos[0]}
         y={mousePos[1]}
-
         options={[
           {
             labelText: "Color",
@@ -79,7 +72,7 @@ export const ImageElement = (props: {
   const [color, setColor] = useState("#D8D9DA");
   const [borderThickness, setThickness] = useState(1);
   const [imageSrc, setImageSrc] = useState(props.src);
-  const [mousePos,setMousePos] = useState([0,0]);
+  const [mousePos, setMousePos] = useState([0, 0]);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -88,7 +81,7 @@ export const ImageElement = (props: {
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
     props.onActivate(props.elementId);
-    setMousePos([e.clientX,e.clientY]);
+    setMousePos([e.clientX, e.clientY]);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,14 +156,14 @@ export const PlayButtonElement = (props: {
 }) => {
   const [active, setActive] = useState(false);
   const [color, setColor] = useState("#19D55E");
-  const [mousePos,setMousePos] = useState([0,0]);
+  const [mousePos, setMousePos] = useState([0, 0]);
 
   const contextVisible = props.elementId === props.activeElementId;
 
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
     props.onActivate(props.elementId);
-    setMousePos([e.clientX,e.clientY]);
+    setMousePos([e.clientX, e.clientY]);
   };
 
   return (
@@ -180,7 +173,6 @@ export const PlayButtonElement = (props: {
         onClick={() => {
           setActive(!active);
         }}
-        
         style={{ backgroundColor: color }}
       >
         <img src={active === true ? PlayIconImage : PauseIconImage}></img>

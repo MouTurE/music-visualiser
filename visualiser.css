@@ -1,0 +1,99 @@
+.CoverImageFrame {
+    width: 75%;
+    max-width: 441px;
+    height: min(468px,40dvh);
+    
+    border: 1px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #D8D9DA;
+    margin: auto;
+    border-radius: 40px;
+    padding: 15px;
+    margin-top: clamp(10px, 5vh, 60px);
+
+}
+
+.SongTitle {
+    display: flex;
+
+    justify-content: center;
+    margin: auto;
+}
+
+
+
+.SongTitle p {
+    color: #D8D9DA;
+    font-size: 3em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(1.2rem, 5vw, 3em);
+    
+}
+
+.SongTitle p:hover{
+    border-bottom:1px solid rgba(255, 255, 255, 5);
+}
+
+body {
+    background-color: #171211;
+    margin: auto;
+}
+
+.PlayButton {
+    display: flex;
+    justify-content: center;
+}
+
+.PlayButton img {
+    width: 75%;
+    height: 75%;
+}
+
+.PlayButton button {
+    border-radius: 100px;
+    width: 30vh;
+    max-width: 99px;
+    height: 30vh;
+    max-height: 99px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    border: 0px solid black;
+    transition: transform 0.2s;
+    
+}
+
+.PlayButton button:hover{
+    transform: scale(1.1,1.1);
+}
+
+.BackButton{
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    transition: margin 0.2s;
+    margin: 10px;
+    height: 40dvh;
+    max-height: 50px;
+}
+
+.BackButton img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.BackButton:hover{
+    background-color: rgba(0, 0, 0, 10);   
+    margin-left: 7px;
+}
+
+p {
+    color: #D8D9DA;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: #D8D9DA;
+}

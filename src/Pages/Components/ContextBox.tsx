@@ -1,4 +1,4 @@
-import React, { Children, ReactNode } from "react";
+import React from "react";
 import "./ContextBox.css";
 
 export interface OptionProps {
@@ -19,12 +19,8 @@ interface ContextBoxProps {
 }
 
 function ContextBox({ titleText, visible, options, x, y }: ContextBoxProps) {
-  const optionStyle = {
-    listStyle: "none",
-    padding: "5px",
-  };
+ 
 
-  const buttonStyle = { border: "none" };
 
   if (!visible) return null;
 

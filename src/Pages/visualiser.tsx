@@ -1,11 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {easeIn, easeOut, motion} from "framer-motion";
+import {motion} from "framer-motion";
 import "./visualiser.css";
-import PlayIconImage from "../Resources/play_icon.png";
-import PauseIconImage from "../Resources/pause_icon.png";
 import LeftArrow from "../Resources/left_arrow.png"
-import ContextBox from "./Components/ContextBox";
 
 import {
   TextElement,
@@ -24,9 +21,9 @@ function visualiser() {
 
   return (
     <motion.div 
-    initial={{x:"200%"}}
-    animate={{x:0}}
-    exit={{x:window.innerWidth}}
+    initial={{x:"200%", y:"0%"}}
+    animate={{x:0, y:"0%"}}
+    exit={{x:window.innerWidth, y:"0%"}}
     transition={{duration:0.3}}
     onContextMenu={(e) =>{
       e.preventDefault();

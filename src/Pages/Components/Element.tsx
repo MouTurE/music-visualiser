@@ -3,7 +3,6 @@ import ContextBox from "./ContextBox";
 import React from "react";
 import PlayIconImage from "../../Resources/play_icon.png";
 import PauseIconImage from "../../Resources/pause_icon.png";
-import ImageIcon from "../../../Resources/image_icon.png";
 
 export const TextElement = (props: {
   elementId: string;
@@ -12,7 +11,6 @@ export const TextElement = (props: {
   onActivate: (id: string) => void;
 }) => {
   const [color, setColor] = useState("#D8D9DA");
-  const [innerText, setInnerText] = useState("Song Title");
   const [visible, setVisible] = useState(true);
   const [mousePos,setMousePos] = useState([0,0]);
 
@@ -51,7 +49,7 @@ export const TextElement = (props: {
         Song Title{" "}
       </p>
       <ContextBox
-        titleText="Text"
+        titleText="Song Title"
         visible={contextVisible}
         x={mousePos[0]}
         y={mousePos[1]}
@@ -123,7 +121,7 @@ export const ImageElement = (props: {
         />
       </div>
       <ContextBox
-        titleText="CoverImage"
+        titleText="Cover Image"
         visible={contextVisible}
         x={mousePos[0]}
         y={mousePos[1]}

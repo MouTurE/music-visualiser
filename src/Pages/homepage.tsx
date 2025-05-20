@@ -4,17 +4,24 @@ import "./homepage.css";
 
 // Components of the page
 const AppTitle = () => {
-  return <h1>Spotify Music Visualiser</h1>;
+  return <div className="app-title">
+    <center>
+      <h1>Spotify Music Visualiser</h1>
+    </center>
+  </div>;
 };
 
 const InputText = () => {
   return (
-    <div>
-      <p>Insert a valid Spotify URL</p>
-      <input
-        placeholder="https://open.spotify.com/intl-tr/track/..."
-        type="text"
-      />
+    <div className="input-container">
+      <div>
+        <p className="input-label">Insert a valid Spotify URL</p>
+        <input
+          className="spotify-input"
+          placeholder="https://open.spotify.com/intl-tr/track/..."
+          type="text"
+        />
+      </div>
     </div>
   );
 };
@@ -22,26 +29,23 @@ const InputText = () => {
 const SubmitButton = () => {
   const navigate = useNavigate();
   return (
-    <button
-      onClick={() => {
-        navigate("/visualiser");
-      }}
-    >
-      Submit URL
-    </button>
+    <div className="submit-button">
+      <button  onClick={() => navigate("/visualiser")}>
+        <p>Submit URL</p>
+      </button>
+    </div>
   );
 };
 
 // Actual page
-function homepage() {
+function Homepage() {
   return (
     <div>
       <AppTitle />
       <InputText />
-      <br />
-      <SubmitButton /> <br />
+      <SubmitButton />
     </div>
   );
 }
 
-export default homepage;
+export default Homepage;

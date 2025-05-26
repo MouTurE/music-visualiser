@@ -157,8 +157,11 @@ export const PlayButtonElement = (props: {
   const [active, setActive] = useState(false);
   const [color, setColor] = useState("#19D55E");
   const [mousePos, setMousePos] = useState([0, 0]);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
 
   const contextVisible = props.elementId === props.activeElementId;
+  const inputRef = useRef<HTMLInputElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -166,17 +169,54 @@ export const PlayButtonElement = (props: {
     setMousePos([e.clientX, e.clientY]);
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+ if (file && file.type.startsWith('audio/')) {
+     
+      if (active) {
+        setActive(false);
+      }
+  
+      console.log("Processing audio file...");
+      const url = URL.createObjectURL(file);
+      setAudioUrl(url);
+      
+        
+      console.log("Url changed successfuly");
+    }
+  };
+
+
+
   return (
     <div className="PlayButton">
       <button
         onContextMenu={handleRightClick}
         onClick={() => {
           setActive(!active);
+          if (active == true && audioRef.current) {
+            audioRef.current.volume = 1;
+            audioRef.current.play();
+            console.log("Playing the music...");
+          }else if (active == false){
+            audioRef.current?.pause();
+            console.log("Music Stopped");
+          }else{
+            console.log("No Audio File");
+            
+          }
         }}
         style={{ backgroundColor: color }}
       >
-        <img src={active === true ? PlayIconImage : PauseIconImage}></img>
+        <img src={active == true ? PlayIconImage : PauseIconImage}></img>
       </button>
+
+      <input onChange={handleFileChange} ref={inputRef} style={{display:"none"}} type="file" name="audioFile" accept=".mp3,audio/mpeg" />
+
+      <audio style={{display:"none"}}  ref={audioRef} src={audioUrl ?? undefined} controls />
+
+
+
       <ContextBox
         titleText="Play/Pause Button"
         x={mousePos[0]}
@@ -189,7 +229,14 @@ export const PlayButtonElement = (props: {
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
               setColor(e.currentTarget.value);
             },
-          },
+          }, {
+            labelText:"Upload Music",
+            optionType:"Button",
+            iconSrc:"",
+            onTrigger: () => {
+              inputRef.current?.click();
+            }
+          }
         ]}
       ></ContextBox>
     </div>

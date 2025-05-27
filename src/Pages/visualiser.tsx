@@ -19,7 +19,7 @@ function visualiser() {
   const [alertMessage, UpdateAlertMessage] = useState("Header Text Here");
   const [alertActive, alertSetActive] = useState(false);
   
-  const [musicVolume, setMusicVolume] = useState(1);
+  const [musicVolume, setMusicVolume] = useState<number>(1);
   const navigate = useNavigate();
 
   const handleActivate = (id: string) => {
@@ -83,7 +83,8 @@ function visualiser() {
         onActivate={handleActivate}
         activeElementId={activeElementId}
         onFileChange={(fileName) =>{triggerAlert("Music Changed To:", fileName ?? "")}}
-        onVolumeChange={(amount?:number) => {setMusicVolume(amount ? amount/100 : 0)}}
+        audioVolume={musicVolume? musicVolume: 1}
+        onVolumeChange={(amount) =>{setMusicVolume(Number(amount))}}
       ></PlayButtonElement>
       <br />
     </motion.div>

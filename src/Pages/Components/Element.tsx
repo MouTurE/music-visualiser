@@ -155,8 +155,10 @@ export const PlayButtonElement = (props: {
   elementId: string;
   activeElementId: string | null;
   onActivate: (id: string) => void;
+
   onFileChange : (fileName?:string) => void;
-  onVolumeChange: (amount?:number | undefined) => void;
+  onVolumeChange : (amount?:number) => void;
+  audioVolume? : number; 
   
 }) => {
   const [active, setActive] = useState(false);
@@ -188,6 +190,7 @@ export const PlayButtonElement = (props: {
       fileName = fileName.replace(/\.mp3$/, "");
       setAudioUrl(url);
       
+      
       props.onFileChange(fileName);
       console.log("Url changed successfuly");
 
@@ -206,7 +209,7 @@ export const PlayButtonElement = (props: {
          
           if (active == true && audioRef.current) {
 
-            audioRef.current.volume = 1;
+           
             audioRef.current.play();
             console.log("Playing the music...");
           }else if (audioRef.current){
@@ -243,10 +246,14 @@ export const PlayButtonElement = (props: {
               setColor(e.currentTarget.value);
             },
           },{
-            labelText: "Volume",
+            labelText: "Volume [%]",
             optionType: "Value",
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
               props.onVolumeChange(Number(e.currentTarget.value));
+              if (audioRef.current) {
+                console.log("volume changed to: " + e.currentTarget.value);
+                audioRef.current.volume = Number(e.currentTarget.value)/100;
+              }
             }
             
           }, {

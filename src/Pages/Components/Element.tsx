@@ -4,6 +4,8 @@ import React from "react";
 import PlayIconImage from "../../Resources/play_icon.png";
 import PauseIconImage from "../../Resources/pause_icon.png";
 
+
+
 export const TextElement = (props: {
   elementId: string;
   innerText: string;
@@ -153,6 +155,9 @@ export const PlayButtonElement = (props: {
   elementId: string;
   activeElementId: string | null;
   onActivate: (id: string) => void;
+  onFileChange : (fileName?:string) => void;
+  onVolumeChange: (amount?:number | undefined) => void;
+  
 }) => {
   const [active, setActive] = useState(false);
   const [color, setColor] = useState("#19D55E");
@@ -179,10 +184,13 @@ export const PlayButtonElement = (props: {
   
       console.log("Processing audio file...");
       const url = URL.createObjectURL(file);
+      var fileName = file.name;
+      fileName = fileName.replace(/\.mp3$/, "");
       setAudioUrl(url);
       
-        
+      props.onFileChange(fileName);
       console.log("Url changed successfuly");
+
     }
   };
 
@@ -194,18 +202,23 @@ export const PlayButtonElement = (props: {
         onContextMenu={handleRightClick}
         onClick={() => {
           setActive(!active);
+
+         
           if (active == true && audioRef.current) {
+
             audioRef.current.volume = 1;
             audioRef.current.play();
             console.log("Playing the music...");
-          }else if (active == false){
+          }else if (audioRef.current){
             audioRef.current?.pause();
             console.log("Music Stopped");
-          }else{
+         
+          } else if (audioRef.current == null) {
             console.log("No Audio File");
-            
+            props.onFileChange("[No Audio File]");
           }
-        }}
+           
+      }}
         style={{ backgroundColor: color }}
       >
         <img src={active == true ? PlayIconImage : PauseIconImage}></img>
@@ -229,6 +242,13 @@ export const PlayButtonElement = (props: {
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
               setColor(e.currentTarget.value);
             },
+          },{
+            labelText: "Volume",
+            optionType: "Value",
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+              props.onVolumeChange(Number(e.currentTarget.value));
+            }
+            
           }, {
             labelText:"Upload Music",
             optionType:"Button",

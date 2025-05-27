@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./visualiser.css";
 import LeftArrow from "../Resources/left_arrow.png";
+import Alert from "./Components/Alert";
 
 import {
   TextElement,
@@ -13,11 +14,33 @@ import {
 // The Actual Page
 function visualiser() {
   const [activeElementId, setActiveElementId] = useState<string | null>(null);
+  
+  const [alertHeader, UpdateAlertHeader] = useState("Message Text Here");
+  const [alertMessage, UpdateAlertMessage] = useState("Header Text Here");
+  const [alertActive, alertSetActive] = useState(false);
+  
+  const [musicVolume, setMusicVolume] = useState(1);
   const navigate = useNavigate();
 
   const handleActivate = (id: string) => {
     setActiveElementId((prev) => (prev === id ? null : id));
   };
+
+  const triggerAlert = (header: string, message:string) => {
+    UpdateAlertHeader(header);
+    UpdateAlertMessage(message);
+    alertSetActive(true);
+    const timer = setTimeout(() => {
+      alertSetActive(false);
+    }, 2.25 * 1000);
+    
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      triggerAlert("Hello!", "Right click on a component to modify it");
+    }, 0.5 * 1000);
+  }, []);
 
   return (
     <motion.div
@@ -40,6 +63,9 @@ function visualiser() {
       <br />
       <br />
 
+      <Alert headerText={alertHeader} messageText={alertMessage} alertActive={alertActive} />  
+
+
       <ImageElement
         src=""
         elementId="CoverImage"
@@ -56,6 +82,8 @@ function visualiser() {
         elementId="PlayButton"
         onActivate={handleActivate}
         activeElementId={activeElementId}
+        onFileChange={(fileName) =>{triggerAlert("Music Changed To:", fileName ?? "")}}
+        onVolumeChange={(amount?:number) => {setMusicVolume(amount ? amount/100 : 0)}}
       ></PlayButtonElement>
       <br />
     </motion.div>

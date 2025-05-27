@@ -15,6 +15,7 @@
 
 .CoverImageFrame img {
     object-fit: cover;
+    border-radius: 40px;
 }
 
 .SongTitle {

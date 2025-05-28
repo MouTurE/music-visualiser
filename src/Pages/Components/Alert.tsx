@@ -1,5 +1,4 @@
-import { div } from "framer-motion/client";
-import { useState } from "react";
+
 
 interface AlertProps {
     headerText : string;

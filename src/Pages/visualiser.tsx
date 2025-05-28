@@ -30,16 +30,19 @@ function visualiser() {
     UpdateAlertHeader(header);
     UpdateAlertMessage(message);
     alertSetActive(true);
-    const timer = setTimeout(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const timer = () => {setTimeout(() => {
       alertSetActive(false);
-    }, 2.25 * 1000);
-    
+    }, 2.25 * 1000)};
+    timer();
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const timer = () => {setTimeout(() => {
       triggerAlert("Hello!", "Right click on a component to modify it");
-    }, 0.5 * 1000);
+    }, 0.5 * 1000)};
+    timer();
   }, []);
 
   return (

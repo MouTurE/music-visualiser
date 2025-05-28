@@ -10,21 +10,7 @@ const AppTitle = () => {
     </center>
   </div>;
 };
-
-const InputText = () => {
-  return (
-    <div className="input-container">
-      <div>
-        <p className="input-label">Insert a valid Spotify URL</p>
-        <input
-          className="spotify-input"
-          placeholder="https://open.spotify.com/intl-tr/track/..."
-          type="text"
-        />
-      </div>
-    </div>
-  );
-};
+   
 
 const SubmitButton = () => {
   const navigate = useNavigate();

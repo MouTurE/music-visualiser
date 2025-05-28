@@ -84,7 +84,9 @@ function visualiser() {
         activeElementId={activeElementId}
         onFileChange={(fileName) =>{triggerAlert("Music Changed To:", fileName ?? "")}}
         audioVolume={musicVolume? musicVolume: 1}
-        onVolumeChange={(amount) =>{setMusicVolume(Number(amount))}}
+        onVolumeChange={(amount) =>{
+          setMusicVolume(Number(amount))
+        }}
       ></PlayButtonElement>
       <br />
     </motion.div>

@@ -6,7 +6,7 @@ import "./homepage.css";
 const AppTitle = () => {
   return <div className="app-title">
     <center>
-      <h1>Spotify Music Visualiser</h1>
+      <h1>Music Visualiser</h1>
     </center>
   </div>;
 };
@@ -31,7 +31,7 @@ const SubmitButton = () => {
   return (
     <div className="submit-button">
       <button  onClick={() => navigate("/visualiser")}>
-        <p>Submit URL</p>
+        <p>Go to the Editor</p>
       </button>
     </div>
   );
@@ -42,7 +42,9 @@ function Homepage() {
   return (
     <div>
       <AppTitle />
-      <InputText />
+      <center>
+        <p>Welcome! This a virtual environment where you can customise and link with music. Enjoy! </p>
+      </center>
       <SubmitButton />
     </div>
   );

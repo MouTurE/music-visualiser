@@ -249,10 +249,22 @@ export const PlayButtonElement = (props: {
             labelText: "Volume [%]",
             optionType: "Value",
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-              props.onVolumeChange(Number(e.currentTarget.value));
+             
+
+
+              
               if (audioRef.current) {
-                console.log("volume changed to: " + e.currentTarget.value);
-                audioRef.current.volume = Number(e.currentTarget.value)/100;
+                var value = Number(e.currentTarget.value);
+                var rate = 1;
+                const percentage = (value / 100)/rate; 
+                
+                
+
+                if (value > 0 && value <= rate * 100)
+                  value = rate * percentage // interpolate between 1 and 0
+                  
+                  //console.log("volume changed to: " + value);
+                  audioRef.current.volume = value;
               }
             }
             

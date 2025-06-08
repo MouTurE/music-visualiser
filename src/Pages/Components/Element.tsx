@@ -5,7 +5,6 @@ import PlayIconImage from "../../Resources/play_icon.png";
 import PauseIconImage from "../../Resources/pause_icon.png";
 
 
-
 export const TextElement = (props: {
   elementId: string;
   innerText: string;
@@ -23,6 +22,8 @@ export const TextElement = (props: {
     props.onActivate(props.elementId);
     setMousePos([e.clientX, e.clientY]);
   };
+
+  
 
   return (
     <div className="SongTitle">
@@ -86,6 +87,7 @@ export const ImageElement = (props: {
     setMousePos([e.clientX, e.clientY]);
   };
 
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -104,10 +106,11 @@ export const ImageElement = (props: {
         style={{ border: borderThickness + "px solid " + color }}
         className="CoverImageFrame"
       >
+        
         <img
           style={{ width: "100%", height: "100%" }}
           src={imageSrc}
-          alt="Cover Image"
+          alt="No Image Uploaded"
         />
         <input
           ref={fileInputRef}

@@ -1,6 +1,6 @@
 {
-  "name": "spotify-visualiser",
-  "homepage": "https://mouture.github.io/spotify-visualiser/",
+  "name": "music-visualiser",
+  "homepage": "https://mouture.github.io/music-visualiser/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
